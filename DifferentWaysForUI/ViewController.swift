@@ -8,12 +8,28 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var mainView: MyCustomView? {
+        return view as? MyCustomView
+    }
+    
+    override func loadView() {
+        view = MyCustomView()
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        mainView?.singInButton.addTarget(self, action: #selector(didTapSingInButton), for: .touchUpInside)
+        mainView?.emailTextField.backgroundColor = .cyan
+        
+        
     }
-
+    @objc
+    func didTapSingInButton() {
+        print(mainView?.emailTextField.text ?? "nothings here")
+    }
 
 }
 
